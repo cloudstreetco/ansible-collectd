@@ -2,7 +2,7 @@
   when: ansible_distribution == "CentOS"
 
 - include: debian.yml
-  when: ansible_distribution == "Debian"
+  when: ansible_os_family == "Debian"
 
 #####################
 # Common

@@ -1,4 +1,4 @@
-{% if collectd_forwarder != '' %}
+{% if collectd_forwarder != '' and private_interface is defined %}
 LoadPlugin network
 <Plugin network>
     {% if collectd_forward_to_logstash|bool %}

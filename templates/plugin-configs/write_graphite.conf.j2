@@ -8,10 +8,10 @@ LoadPlugin python
   <Node "graphite">
     Host "{{ graphite_host }}"
     Port "{{ graphite_port }}"
-    Protocol "udp"
+    Protocol "{{ graphite_protocol }}"
     LogSendErrors true
-    Prefix "collectd"
-    Postfix "collectd"
+    Prefix "{{ graphite_prefix }}"
+    Postfix "{{ graphite_postfix }}"
     StoreRates true
     AlwaysAppendDS false
     EscapeCharacter "_"

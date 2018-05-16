@@ -5,6 +5,9 @@ collectd_forwarder: ''
 
 use_librato: false
 use_graphite: false
+graphite_prefix: ''
+graphite_postfix: ''
+graphite_protocol: udp
 
 collectd_plugins:
   - syslog

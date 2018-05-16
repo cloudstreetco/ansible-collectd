@@ -1,0 +1,21 @@
+{% if use_mysql_plugin is defined and use_mysql_plugin == true %}
+LoadPlugin mysql
+<Plugin "mysql">
+  <Database "{{ mysql_db_name }}">
+    Host "{{ mysql_host }}"
+    User "{{ mysql_user }}"
+    Password "{{ mysql_password }}"
+    Port "{{ mysql_port|default(3306) }}"
+    {% if mysql_innodbstats is defined and mysql_innodbstats == true %}
+    InnodbStats true
+    {% endif %}
+    {% if mysql_masterstats is defined and mysql_masterstats == true %}
+    MasterStats false
+    {% endif %}
+    {% if mysql_slavestats is defined and mysql_slavestats == true %}
+    SlaveStats false
+    {% endif %}
+  </Database>
+</Plugin>
+{% endif %}
+

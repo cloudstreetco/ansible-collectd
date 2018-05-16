@@ -22,6 +22,7 @@ collectd_plugins:
   - network
   - librato
   - exec
+  - mysql
   - write_graphite
 
 packages:

@@ -23,6 +23,7 @@ collectd_plugins:
   - librato
   - exec
   - mysql
+  - dbi
   - write_graphite
 
 packages:
@@ -48,3 +49,4 @@ packages:
   - collectd-rrdtool
   - collectd-snmp
   - collectd-write_riemann
+  - libdbi-dbd-mysql

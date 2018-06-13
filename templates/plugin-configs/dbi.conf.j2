@@ -1,0 +1,39 @@
+{% if use_dbi_plugin is defined and use_dbi_plugin == true -%}
+LoadPlugin dbi
+<Plugin "dbi">
+
+  {% for query in dbi_queries -%}
+  <Query "{{ query.name }}">
+    Statement "{{ query.statement }}"
+    {% for result in query.results -%}
+    <Result>
+      Type "{{ result.type }}"
+      InstancePrefix "{{ result.instance_prefix }}"
+      {% if result.instances_from is defined -%}
+      InstancesFrom {% for instance_from in result.instances_from -%} "{{ instance_from }}" {% endfor -%}
+      {% endif %}
+      
+      ValuesFrom "{{ result.values_from }}"
+    </Result>
+    {% endfor -%}
+  </Query>
+  {% endfor -%}
+
+  <Database "{{ dbi_db_name }}">
+    Driver "mysql" 
+    DriverOption "host" "{{ dbi_host }}"
+    DriverOption "Port" "{{ dbi_port }}"
+    # You may connect via socket as well:
+    # DriverOption "mysql_unix_socket" "/var/tmp/mysql.sock"
+    DriverOption "username" "{{ dbi_user }}"
+    DriverOption "password" "{{ dbi_password }}"
+    DriverOption "dbname" "{{ dbi_db_name }}"
+    SelectDB "{{ dbi_db_name }}"
+    {% for query in dbi_queries -%}
+    Query "{{ query.name }}"
+    {% endfor -%}
+  </Database>
+  
+</Plugin>
+{% endif -%}
+

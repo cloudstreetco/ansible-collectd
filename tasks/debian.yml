@@ -8,7 +8,6 @@
 - name: "Install required packages"
   apt : >
     name={{ item }}
-    state=latest
   with_items:
     - git
     - collectd
